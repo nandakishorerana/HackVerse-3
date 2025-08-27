@@ -1,0 +1,180 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+:root {
+    /* Dark theme home services platform */
+    --background: 220 13% 9%;
+    --foreground: 210 40% 98%;
+
+    --card: 220 13% 12%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 220 13% 12%;
+    --popover-foreground: 210 40% 98%;
+
+    /* Purple primary for trust and premium feel */
+    --primary: 262 83% 58%;
+    --primary-foreground: 210 40% 98%;
+
+    /* Cyan secondary for modern tech feel */
+    --secondary: 180 100% 50%;
+    --secondary-foreground: 220 13% 9%;
+
+    --muted: 220 13% 18%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    /* Neon accent colors */
+    --accent: 180 100% 50%;
+    --accent-foreground: 220 13% 9%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 13% 18%;
+    --input: 220 13% 18%;
+    --ring: 262 83% 58%;
+
+    --radius: 0.75rem;
+
+    /* Custom design tokens for home services */
+    --gradient-primary: linear-gradient(135deg, hsl(262 83% 58%), hsl(180 100% 50%));
+    --gradient-hero: linear-gradient(135deg, hsl(220 13% 9%) 0%, hsl(262 83% 15%) 50%, hsl(180 100% 15%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(220 13% 12%), hsl(220 13% 15%));
+    
+    /* Glow effects */
+    --glow-primary: 0 0 30px hsl(262 83% 58% / 0.5);
+    --glow-secondary: 0 0 30px hsl(180 100% 50% / 0.5);
+    --glow-card: 0 4px 20px hsl(262 83% 58% / 0.15);
+    
+    /* Shadows */
+    --shadow-elegant: 0 10px 40px hsl(220 13% 5% / 0.8);
+    --shadow-card: 0 8px 32px hsl(220 13% 5% / 0.6);
+    
+    /* Animation timings */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  /* Remove dark mode toggle - we're always dark */
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Service card component */
+  .service-card {
+    @apply relative bg-card rounded-lg p-6 border border-border/50;
+    background: var(--gradient-card);
+    box-shadow: var(--shadow-card);
+    transition: var(--transition-smooth);
+  }
+  
+  .service-card:hover {
+    @apply border-primary/50 scale-105;
+    box-shadow: var(--glow-card), var(--shadow-elegant);
+  }
+  
+  /* Neon button styles */
+  .btn-neon {
+    @apply relative bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium;
+    background: var(--gradient-primary);
+    transition: var(--transition-smooth);
+  }
+  
+  .btn-neon:hover {
+    @apply scale-105;
+    box-shadow: var(--glow-primary);
+  }
+  
+  .btn-neon:active {
+    @apply scale-95;
+  }
+  
+  /* Hero gradient background */
+  .hero-bg {
+    background: var(--gradient-hero);
+  }
+  
+  /* Smooth scroll anchor offset for sticky nav */
+  .scroll-target {
+    scroll-margin-top: 80px;
+  }
+  
+  /* Glowing text effect */
+  .text-glow {
+    text-shadow: 0 0 20px currentColor;
+  }
+  
+  /* Loading animation */
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes glow {
+  from { 
+    text-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
+  }
+  to { 
+    text-shadow: 0 0 20px currentColor, 0 0 30px currentColor, 0 0 40px currentColor;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { 
+    box-shadow: 0 0 5px currentColor;
+  }
+  50% { 
+    box-shadow: 0 0 20px currentColor, 0 0 30px currentColor;
+  }
+}
